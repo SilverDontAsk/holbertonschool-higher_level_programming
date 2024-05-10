@@ -1,12 +1,13 @@
 #!/usr/bin/python3
-import importlib.util
-
 def load_variable():
     file_path = 'variable_load_5.py'
-    spec = importlib.util.spec_from_file_location('module_name', file_path)
-    module = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(module)
-    return module.a
+    with open(file_path, 'r') as file:
+        lines = file.readlines()
+        for line in lines:
+            if line.startswith('a = '):
+                value_str = line.split('=')[1].strip()
+                value = eval(value_str)
+                return value
 
 
 if __name__ == "__main__":
