@@ -10,6 +10,9 @@ def load_variable():
                 return value
 
 
+    raise ValueError
+
+
 if __name__ == "__main__":
     value_of_a = load_variable()
     print(value_of_a)
