@@ -9,7 +9,6 @@ def load_variable():
                 value = eval(value_str)
                 return value
 
-
     raise ValueError
 
 
