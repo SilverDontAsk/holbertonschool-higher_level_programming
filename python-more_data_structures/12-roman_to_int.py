@@ -36,6 +36,5 @@ def roman_to_int(roman_string):
         elif i == "V":
             deciphered_number += 5
         elif i == "I":
-            deciphered_number += 1 
-    
+            deciphered_number += 1
     return deciphered_number
