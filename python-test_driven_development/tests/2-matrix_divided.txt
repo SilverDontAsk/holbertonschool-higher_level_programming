@@ -1,0 +1,64 @@
+>>> matrix_divided = __import__('2-matrix_divided').matrix_divided
+
+def test_matrix_divided():
+    matrix = [
+        [5, 6],
+        [7, 8]
+    ]
+    div = 2
+    result = matrix_divided(matrix, div)
+    expected = [
+        [2.5, 3.0],
+        [3.5, 4.0]
+    ]
+    assert result == expected, "Matrix division failed"
+
+def test_matrix_divided_zero_division():
+    matrix = [
+        [5, 6],
+        [7, 8]
+    ]
+    div = 0
+    try:
+        matrix_divided(matrix, div)
+    except ZeroDivisionError:
+        pass
+    except Exception as e:
+        assert False, f"Wrong exception raised: {e}"
+    else:
+        assert False, "ZeroDivisionError not raised"
+
+def test_matrix_divided_invalid_matrix():
+    matrix = [
+        [5, 6],
+        [7]
+    ]
+    div = 2
+    try:
+        matrix_divided(matrix, div)
+    except TypeError:
+        pass
+    except Exception as e:
+        assert False, f"Wrong exception raised: {e}"
+    else:
+        assert False, "TypeError not raised"
+
+def test_matrix_divided_invalid_div():
+    matrix = [
+        [5, 6],
+        [7, 8]
+    ]
+    div = "a"
+    try:
+        matrix_divided(matrix, div)
+    except TypeError:
+        pass
+    except Exception as e:
+        assert False, f"Wrong exception raised: {e}"
+    else:
+        assert False, "TypeError not raised"
+
+test_matrix_divided()
+test_matrix_divided_zero_division()
+test_matrix_divided_invalid_matrix()
+test_matrix_divided_invalid_div()
