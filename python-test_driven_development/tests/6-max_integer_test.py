@@ -2,6 +2,7 @@
 import unittest
 max_integer = __import__('6-max_integer').max_integer
 
+
 class TestMaxInt(unittest.TestCase):
     def test_empty_list(self):
         self.assertIsNone(max_integer())
@@ -21,6 +22,7 @@ class TestMaxInt(unittest.TestCase):
     def test_mixed_elements(self):
         with self.assertRaises(TypeError):
             max_integer([73, '89', 32])
+
 
 if __name__ == '__main__':
     unittest.main()
