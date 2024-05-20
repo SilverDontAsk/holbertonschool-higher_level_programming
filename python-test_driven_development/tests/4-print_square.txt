@@ -1,0 +1,39 @@
+The ``print_square`` module
+======================
+
+Using ``print_square``
+-------------------
+
+This is an example text file in reStructuredText format.  First import
+``print_square`` from the ``print_square`` module:
+
+    >>> print_square = __import__('4-print_square').print_square
+
+Test Cases:
+
+1. Test with only first_name as a string.
+   >>> print_square(-1)
+   Traceback (most recent call last):
+     ...
+   ValueError: size must be >= 0
+
+2. Test with float.
+   >>> print_square(-6.6)
+   Traceback (most recent call last):
+     ...
+   TypeError: size must be an integer
+
+3. Test with string.
+   >>> print_square("Emma")
+   Traceback (most recent call last):
+     ...
+   TypeError: size must be an integer
+
+4. Test with 1.
+   >>> print_square(1)
+   #
+
+5. Test with 2.
+   >>> print_square(2)
+   ##
+   ##
