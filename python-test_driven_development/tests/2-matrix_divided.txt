@@ -1,64 +1,65 @@
+#!/usr/bin/python3
+
+
 >>> matrix_divided = __import__('2-matrix_divided').matrix_divided
+    """
+    Divides all elements of a matrix by a number.
 
-def test_matrix_divided():
-    matrix = [
-        [5, 6],
-        [7, 8]
-    ]
-    div = 2
-    result = matrix_divided(matrix, div)
-    expected = [
-        [2.5, 3.0],
-        [3.5, 4.0]
-    ]
-    assert result == expected, "Matrix division failed"
+    Args:
+        matrix: a matrix of ints and floats.
+        div: the number to divide by.
 
-def test_matrix_divided_zero_division():
-    matrix = [
-        [5, 6],
-        [7, 8]
-    ]
-    div = 0
-    try:
-        matrix_divided(matrix, div)
-    except ZeroDivisionError:
-        pass
-    except Exception as e:
-        assert False, f"Wrong exception raised: {e}"
-    else:
-        assert False, "ZeroDivisionError not raised"
+    Returns:
+        A new matrix with all the elements divided by div.
 
-def test_matrix_divided_invalid_matrix():
-    matrix = [
-        [5, 6],
-        [7]
-    ]
-    div = 2
-    try:
-        matrix_divided(matrix, div)
-    except TypeError:
-        pass
-    except Exception as e:
-        assert False, f"Wrong exception raised: {e}"
-    else:
-        assert False, "TypeError not raised"
+    Raises:
+        TypeError: If matrix is not a list ints or floats,
+                    or if div is not a number.
+        ZeroDivisionError: If div is zero.
 
-def test_matrix_divided_invalid_div():
-    matrix = [
-        [5, 6],
-        [7, 8]
-    ]
-    div = "a"
-    try:
-        matrix_divided(matrix, div)
-    except TypeError:
-        pass
-    except Exception as e:
-        assert False, f"Wrong exception raised: {e}"
-    else:
-        assert False, "TypeError not raised"
-
-test_matrix_divided()
-test_matrix_divided_zero_division()
-test_matrix_divided_invalid_matrix()
-test_matrix_divided_invalid_div()
+    Test Cases:
+    >>> matrix_divided([[1, 2], [3, 4]], 2)
+    [[0.5, 1.0], [1.5, 2.0]]
+    >>> matrix_divided([[1.0, 2.0], [3.0, 4.0]], 2)
+    [[0.5, 1.0], [1.5, 2.0]]
+    >>> matrix_divided([[1, 2, 3], [4, 5, 6]], 2)
+    [[0.5, 1.0, 1.5], [2.0, 2.5, 3.0]]
+    >>> matrix_divided([[1.0, 2.0, 3.0], [4.0, 5.0, 6.0]], 2)
+    [[0.5, 1.0, 1.5], [2.0, 2.5, 3.0]]
+    >>> matrix_divided([[1, 2], [3, 4]], 0)
+    Traceback (most recent call last):
+        ...
+    ZeroDivisionError: division by zero
+    >>> matrix_divided([[1, 2], [3, 4]], 'a')
+    Traceback (most recent call last):
+        ...
+    TypeError: div must be a number
+    >>> matrix_divided([[1, 2], [3, 4]], [1, 2])
+    Traceback (most recent call last):
+        ...
+    TypeError: div must be a number
+    >>> matrix_divided([[1, 2], [3, 4]], 1.5)
+    [[0.67, 1.33], [2.0, 2.67]]
+    >>> matrix_divided([[1, '2'], [3, 4]], 2)
+    Traceback (most recent call last):
+        ...
+    TypeError: matrix must be a matrix of ints/floats
+    >>> matrix_divided([[1, 2], [3, 4.0]], 2)
+    [[0.5, 1.0], [1.5, 2.0]]
+    >>> matrix_divided([[1, 2], [3, 4]], 2.0)
+    [[0.5, 1.0], [1.5, 2.0]]
+    >>> matrix_divided([[1, 2], [3, 4]], 2.5)
+    [[0.4, 0.8], [1.2, 1.6]]
+    >>> matrix_divided([[1, 2], [3, 4]], -2)
+    [[-0.5, -1.0], [-1.5, -2.0]]
+    >>> matrix_divided([[1, 2], [3, 4]], -2.5)
+    [[-0.4, -0.8], [-1.2, -1.6]]
+    >>> matrix_divided([[0, 2], [3, 4]], 2)
+    [[0.0, 1.0], [1.5, 2.0]]
+    >>> matrix_divided([[1, 0], [3, 4]], 2)
+    [[0.5, 0.0], [1.5, 2.0]]
+    >>> matrix_divided([[1, 2], []], 2)
+    Traceback (most recent call last):
+        ...
+    TypeError: Each row of the matrix must have the same size
+    >>> matrix_divided([[1, 2
