@@ -1,0 +1,34 @@
+# tests/0-add_integer.txt
+# Test cases for add_integer function
+
+# Test case 1: Adding two integers
+Input: 15, 2
+Expected Output: 17
+
+# Test case 2: Adding two floats
+Input: 3.5, 4.2
+Expected Output: 7
+
+# Test case 3: Adding an integer and a float
+Input: 3, 4.5
+Expected Output: 7
+
+# Test case 4: Default value for b
+Input: 13
+Expected Output: 111
+
+# Test case 5: Negative values
+Input: -5, -18
+Expected Output: -23
+
+# Test case 6: Zero values
+Input: 0, 0
+Expected Output: 0
+
+# Test case 7: Invalid input for a (string)
+Input: "a", 4
+Expected Output: TypeError: a must be an integer
+
+# Test case 8: Invalid input for b (string)
+Input: 3, "b"
+Expected Output: TypeError: b must be an integer
