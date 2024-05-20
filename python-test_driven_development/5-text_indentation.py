@@ -3,7 +3,7 @@ def text_indentation(text):
     if not isinstance(text, str):
         raise TypeError("text must be a string")
 
-    for c in '.?,:':
+    for c in '.?:':
         text = text.replace(c, f'{c}\n\n')
 
     lines = text.split('\n')
