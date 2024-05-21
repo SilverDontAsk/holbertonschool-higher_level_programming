@@ -74,6 +74,8 @@ class Rectangle:
             str: the string representation of the rectangle.
 
         """
+        if self.__width == 0 or self.__height == 0:
+            return ""
         rectangle = []
         for _ in range(self.__height):
             rectangle.append('#' * self.__width)
