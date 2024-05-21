@@ -3,24 +3,40 @@ class Rectangle:
     """Defines a rectangle with a width and height.
 
     Attributes:
-        _width: width of the rectangle
-        _height: height of the rectangle
+        __width (int): width of the rectangle, private.
+        __height (int): height of the rectangle, private.
 
     Methods:
-    width(self): retrieves the width of the rectangle
-    width(self, value): sets the width of the rectangle
-    height(self): retrieves the height of the rectangle
-    height(self, value): sets the height of the rectangle
-    __str__(self): Returns a string representation of the rectangle.
+        __init__(self, width=0, height=0):
+            Initializes a Rectangle instance with optional width and height.
+        width(self):
+            Retrieves the width of the rectangle.
+        width(self, value):
+            Sets the width of the rectangle.
+        height(self):
+            Retrieves the height of the rectangle.
+        height(self, value):
+            Sets the height of the rectangle.
 
     """
     def __init__(self, width=0, height=0):
+        """Initializes a Rectangle instance with optional width and height.
+
+        Args:
+            width (int): The width of the rectangle, defaults to 0.
+            height (int): The height of the rectangle, defaults to 0.
+        """
         self.height = height
         self.width = width
 
     @property
     def height(self):
-        """Retrieves the height of the rectangle"""
+        """Retrieves the height of the rectangle
+
+        Returns:
+            int: the height of the rectangle.
+
+        """
         return self.__height
 
     @height.setter
@@ -33,7 +49,6 @@ class Rectangle:
         Raises:
             TypeError: if value is not an int
             ValueError: if value is less than 0
-
         """
         if not isinstance(value, int):
             raise TypeError("height must be an int")
@@ -43,7 +58,11 @@ class Rectangle:
 
     @property
     def width(self):
-        """Retrieves the width of the rectangle."""
+        """Retrieves the width of the rectangle.
+
+        Returns:
+            int: the width of the rectangle
+        """
         return self.__width
 
     @width.setter
