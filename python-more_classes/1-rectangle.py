@@ -64,11 +64,3 @@ class Rectangle:
         if value < 0:
             raise ValueError("width must be >= 0")
         self.__width = value
-
-    def __str__(self):
-        """Returns a string representation of the rectangle."""
-        return f"[Rectangle] ({self.width})/{self.height}"
-
-    def __repr__(self):
-        """Returns a string representation of the rectangle."""
-        return f"Rectangle(_width={self._width}, _height={self._height})"
