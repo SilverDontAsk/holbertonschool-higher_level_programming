@@ -8,5 +8,7 @@ Attributes:
 Methods:
     None.
 """
+
+
 class Rectangle:
     pass
