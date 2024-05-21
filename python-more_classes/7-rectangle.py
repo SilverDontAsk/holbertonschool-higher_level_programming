@@ -81,9 +81,11 @@ class Rectangle:
         """
         if self.__width == 0 or self.__height == 0:
             return ""
+        if not isinstance(self.print_symbol, str):
+            self.print_symbol = str(self.print_symbol)
         rectangle = []
         for _ in range(self.__height):
-            rectangle.append(str(self.print_symbol * self.__width))
+            rectangle.append(self.print_symbol * self.__width)
         return '\n'.join(rectangle)
 
     def __repr__(self):
