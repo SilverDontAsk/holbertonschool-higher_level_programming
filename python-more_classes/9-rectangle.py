@@ -135,7 +135,7 @@ class Rectangle:
         Args:
             cls: represents the class
             size: size of new rectangle
-        
+
         Returns:
             Rectangle: new Rectangle with equal width, height and size.
 
