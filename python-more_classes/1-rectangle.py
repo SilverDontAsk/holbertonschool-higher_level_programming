@@ -2,6 +2,8 @@
 """
 This Module defines a rectangle class
 """
+
+
 class Rectangle:
     """Defines a rectangle with a width and height.
 
