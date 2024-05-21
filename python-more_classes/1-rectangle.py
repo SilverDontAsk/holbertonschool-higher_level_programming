@@ -12,12 +12,11 @@ class Rectangle:
     height(self): retrieves the height of the rectangle
     height(self, value): sets the height of the rectangle
     __str__(self): Returns a string representation of the rectangle.
-    __repr__(self): Returns a string representation of the rectangle.
 
     """
     def __init__(self, width=0, height=0):
-        self.width = width
         self.height = height
+        self.width = width
 
     @property
     def height(self):
@@ -64,3 +63,14 @@ class Rectangle:
         if value < 0:
             raise ValueError("width must be >= 0")
         self.__width = value
+
+    def __str__(self):
+        """Returns a string representation of the rectangle.
+
+        Returns:
+            str: A string representation of the rectangle in the format
+            "{'height': {self.height}, 'width': {self.width}}"
+        """
+        return "{{\n    'height': " + \
+               str(self.height) + ",\n    'width': " + \
+               str(self.width) + "\n}}"
