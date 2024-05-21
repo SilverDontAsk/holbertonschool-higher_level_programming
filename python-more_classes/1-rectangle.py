@@ -47,7 +47,7 @@ class Rectangle:
 
         Raises:
             TypeError: if value is not an int
-            ValueError: if value is less than 0
+            ValueError: if value is >= 0
         """
         if not isinstance(value, int):
             raise TypeError("height must be an int")
@@ -59,7 +59,7 @@ class Rectangle:
     def width(self):
         """Retrieves the width of the rectangle.
 
-        Returns:
+        Returns
             int: the width of the rectangle
         """
         return self.__width
@@ -73,7 +73,7 @@ class Rectangle:
 
         Raises:
             TypeError: if value is not an int
-            ValueError: if value is less than 0
+            ValueError: if value is >= 0
 
         """
         if not isinstance(value, int):
