@@ -63,14 +63,3 @@ class Rectangle:
         if value < 0:
             raise ValueError("width must be >= 0")
         self.__width = value
-
-    def __str__(self):
-        """Returns a string representation of the rectangle.
-
-        Returns:
-            str: A string representation of the rectangle in the format
-            "{'height': {self.height}, 'width': {self.width}}"
-        """
-        return "{{\n    'height': " + \
-               str(self.height) + ",\n    'width': " + \
-               str(self.width) + "\n}}"
