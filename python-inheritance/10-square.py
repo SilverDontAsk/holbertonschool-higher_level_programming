@@ -4,6 +4,7 @@ Thie module represents a class square that inherits from class Rectangle
 """
 Rectangle = __import__('9-rectangle').Rectangle
 
+
 class Square(Rectangle):
     """
     Class that inherits from class rectangle
