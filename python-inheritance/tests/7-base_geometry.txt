@@ -1,0 +1,25 @@
+>>> bg = __import__('7-base_geometry').BaseGeometry()
+
+>>> bg.integer_validator("age", "23")
+Traceback (most recent call last):
+    ...
+TypeError: age must be an integer
+
+>>> bg.integer_validator("age", -1)
+Traceback (most recent call last):
+    ...
+ValueError: age must be greater than 0
+
+>>> bg.integer_validator("age", 23)
+>>> print("Validation successful")
+Validation successful
+
+>>> bg.integer_validator("width", 0)
+Traceback (most recent call last):
+    ...
+ValueError: width must be greater than 0
+
+>>> bg.integer_validator("height", 100)
+>>> print("Validation successful")
+Validation successful
+
