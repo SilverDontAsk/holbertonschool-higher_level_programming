@@ -22,7 +22,7 @@ class Circle(Shape):
     Circle class inheriting from abstract class Shape
     """
     def __init__(self, radius):
-        self.radius = max(0, radius)
+        self.radius = abs(radius)
 
     def area(self):
         return math.pi * self.radius ** 2
