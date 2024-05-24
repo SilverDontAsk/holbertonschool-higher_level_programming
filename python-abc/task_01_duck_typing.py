@@ -22,9 +22,7 @@ class Circle(Shape):
     Circle class inheriting from abstract class Shape
     """
     def __init__(self, radius):
-        if radius < 0:
-            raise ValueError("Radius must be greater than 0")
-        self.radius = radius
+        self.radius = max(0, radius)
 
     def area(self):
         return math.pi * self.radius ** 2
