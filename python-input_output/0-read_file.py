@@ -13,6 +13,6 @@ def read_file(filename=""):
             for line in file:
                 print(line, end="")
     except FileNotFoundError:
-        print("{} not found.".format(filename))
+        raise FileNotFoundError
     except IOError:
         print("Could not read from file: '{}'.".format(filename))
