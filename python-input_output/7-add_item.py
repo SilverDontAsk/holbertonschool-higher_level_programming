@@ -14,10 +14,10 @@ filename = "add_item.json"
 
 
 try:
-    l = load_from_json_file(filename)
+    las = load_from_json_file(filename)
 except FileNotFoundError:
-    l = []
+    las = []
 
-l.extend(sys.argv[1:])
+las.extend(sys.argv[1:])
 
-save_to_json_file(l, filename)
+save_to_json_file(las, filename)
