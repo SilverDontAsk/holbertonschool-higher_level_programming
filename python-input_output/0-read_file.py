@@ -12,7 +12,7 @@ def read_file(filename=""):
         with open(filename, 'r') as file:
             for line in file:
                 print(line, end="")
-    except FileNotFoundError:
-        raise FileNotFoundError
+    except FileNotFoundError as h:
+        print(h)
     except IOError:
         print("Could not read from file: '{}'.".format(filename))
