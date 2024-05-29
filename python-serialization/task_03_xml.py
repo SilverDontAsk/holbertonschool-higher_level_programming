@@ -29,10 +29,10 @@ def deserialize_from_xml(filename):
 
     for child in root:
         if child.text.isdigit():
-            data[child.tag] = int(child.text)
+            dictionary[child.tag] = int(child.text)
         elif child.text.replace('.', '', 1).isdigit():
-            data[child.tag] = float(child.text)
+            dictionary[child.tag] = float(child.text)
         else:
-            data[child.tag] = child.text
+            dictionary[child.tag] = child.text
 
     return dictionary
