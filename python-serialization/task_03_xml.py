@@ -5,10 +5,6 @@ Module to serialize and deserialize with XML
 import xml.etree.ElementTree as ET
 
 
-def sanitize_tag(tag):
-    return tag.replace(' ', '_')
-
-
 def serialize_to_xml(dictionary, filename):
     """
     Serializes a python dictionary into an xml file
@@ -16,12 +12,11 @@ def serialize_to_xml(dictionary, filename):
     root = ET.Element('data')
 
     for key, value in dictionary.items():
-        tag = sanitize_tag(str(key))
-        item = ET.SubElement(root, tag)
+        item = ET.SubElement(root, key)
         item.text = str(value)
 
     tree = ET.ElementTree(root)
-    tree.write(filename)
+    tree.write(filename, encoding='utf-8', xml_declaration=True)
 
 
 def deserialize_from_xml(filename):
