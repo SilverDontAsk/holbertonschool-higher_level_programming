@@ -5,7 +5,6 @@ Module to serialize and deserialize with XML
 import xml.etree.ElementTree as ET
 
 
-
 def serialize_to_xml(dictionary, filename):
     """
     Serializes a python dictionary into an xml file
@@ -18,6 +17,7 @@ def serialize_to_xml(dictionary, filename):
 
     tree = ET.ElementTree(root)
     tree.write(filename)
+
 
 def deserialize_from_xml(filename):
     """
