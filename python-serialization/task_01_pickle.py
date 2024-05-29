@@ -23,13 +23,19 @@ class CustomObject:
         """
         serializes with the pickle module
         """
-        with open(filename, 'wb') as pickle_file:
-            pickle.dump(self, pickle_file)
+        try:
+            with open(filename, 'wb') as pickle_file:
+                pickle.dump(self, pickle_file)
+        except Exception as p:
+            return None
 
     @classmethod
     def deserialize(cls, filename):
         """
         Deserializes with the pickle module
         """
-        with open(filename, 'rb') as pickle_file:
-            return pickle.load(pickle_file)
+        try:
+            with open(filename, 'rb') as pickle_file:
+                return pickle.load(pickle_file)
+        except Exception as p:
+            return None
