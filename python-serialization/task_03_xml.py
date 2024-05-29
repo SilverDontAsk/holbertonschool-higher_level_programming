@@ -10,13 +10,13 @@ def serialize_to_xml(dictionary, filename):
     """
     Serializes a python dictionary into an xml file
     """
-    root = ET.Element("data")
+    root = ET.Element('data')
 
     for key, value in dictionary.items():
-        item = ET.SubElement(root, "item", key=key)
+        item = ET.SubElement(root, key)
         item.text = str(value)
 
-    tree = ET.ElementsTree(root)
+    tree = ET.ElementTree(root)
     tree.write(filename)
 
 def deserialize_from_xml(filename):
@@ -27,18 +27,12 @@ def deserialize_from_xml(filename):
     root = tree.getroot()
     dictionary = {}
 
-    for item in root.findall("item"):
-        key = item.get("key")
-        value = item.text
-
-        if value.isdigit():
-            value = int(value)
+    for child in root:
+        if child.text.isdigit():
+            data[child.tag] = int(child.text)
+        elif child.text.replace('.', '', 1).isdigit():
+            data[child.tag] = float(child.text)
         else:
-            try:
-                value = float(value)
-            except ValueError:
-                pass
-
-        dictionary[key] = value
+            data[child.tag] = child.text
 
     return dictionary
