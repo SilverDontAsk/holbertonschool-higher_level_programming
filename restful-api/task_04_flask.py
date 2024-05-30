@@ -16,7 +16,7 @@ def home():
     """
     return "Welcome to the Flask API!"
 
-@app.route('/data')
+@app.route('/data', methods=['GET'])
 def get_data():
     """
     returns a jsonified list of users
@@ -59,7 +59,7 @@ def add_user():
         if user_data:
             username = user_data.get('username')
             users[username] = user_data
-            return jsonify({"message": "User added successfully", "user": user_data}), 201
+            return jsonify({"message": "User added", "user": user_data}), 201
         else:
             return "Invalid JSON data", 400
     else:
