@@ -21,7 +21,10 @@ def get_data():
     """
     returns a jsonified list of users
     """
-    return jsonify(list(users.keys()))
+    if users:
+        return jsonify(list(users.keys()))
+    else:
+        return jsonify({"message": "No users found"}), 200
 
 @app.route('/status', methods=['GET'])
 def get_status():
