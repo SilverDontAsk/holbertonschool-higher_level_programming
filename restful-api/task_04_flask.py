@@ -53,7 +53,7 @@ def add_user():
     adds users
     """
     if request.method == 'POST':
-        user_data = requests.get_json()
+        user_data = request.get_json()
         if user_data:
             username = user_data.get('username')
             users[username] = user_data
