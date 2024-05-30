@@ -21,6 +21,8 @@ def get_data():
     """
     returns a jsonified list of users
     """
+    if not users:
+        return "No users found", 404
     return jsonify(list(users.keys()))
 
 @app.route('/status')
@@ -50,7 +52,8 @@ def add_user():
     if user_data:
         username = user_data.get('username')
         users[username] = user_data
-        return jsonify(user_data), 201
+        return jsonify({"message": "User added successfully",
+                        "user": user_data), 201
     else:
         return "Invalid JSON data", 400
 
