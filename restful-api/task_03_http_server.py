@@ -19,7 +19,7 @@ class SimpleHTTPRequestHandler(http.server.BaseHTTPRequestHandler):
             self.send_header('Content-type', 'application/json')
             self.end_headers()
             data = {"name": "John", "age": 30, "city": "New York"}
-            self.wfile.write(json.dump(data).encode('utf-8'))
+            self.wfile.write(json.dumps(data).encode('utf-8'))
         elif self.path == '/status':
             self.send_response(HTTPStatus.OK)
             self.send_header('Content-type', 'text/plain')
@@ -38,3 +38,6 @@ def run(server_class=http.server.HTTPServer,
     httpd = server_class(server_address, handler_class)
     print("Starting httpd server on port 8000...")
     httpd.serve_forever()
+
+if __name__ =="__main__":
+    run()
