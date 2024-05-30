@@ -21,10 +21,17 @@ def get_data():
     """
     returns a jsonified list of users
     """
-    if users:
-        return jsonify(list(users.keys()))
-    else:
-        return jsonify({"message": "No users found"}), 200
+    try:
+        logging.debug(f"Users dictionary: {users}")
+        if users:
+            user_list = list(users.keys())
+            logging.debug(f"User list: {user_list}")
+            return jsonify(user_list)
+        else:
+            return jsonify({"message": "No users found"}), 200
+    except Exception as e:
+        logging.error(f"Error in /data route: {e}")
+        return jsonify({"error": "An error occurred"}), 500
 
 @app.route('/status', methods=['GET'])
 def get_status():
