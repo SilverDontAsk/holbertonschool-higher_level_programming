@@ -25,14 +25,14 @@ def get_data():
         return "No users found", 404
     return jsonify(list(users.keys()))
 
-@app.route('/status')
+@app.route('/status', methods=['GET'])
 def get_status():
     """
     gets the status of the API
     """
     return "OK"
 
-@app.route('/users/<username>')
+@app.route('/users/<username>', methods=['GET'])
 def get_user(username):
     """
     gets and jsonifies users
@@ -61,9 +61,9 @@ def add_user():
             users[username] = user_data
             return jsonify({"message": "User added", "user": user_data}), 201
         else:
-            return "Invalid JSON data", 400
+            return jsonify({"error", "Username is required"}), 400
     else:
-        return "Method not allowed", 405
+        return jsonify({"error", "Invalid JSON data"}), 400
 
 if __name__ == "__main__":
     app.run()
