@@ -32,7 +32,7 @@ def get_status():
     """
     return "OK"
 
-@app.route
+@app.route('/users/<username>')
 def get_user(username):
     """
     gets and jsonifies users
