@@ -7,7 +7,7 @@ import json
 from http import HTTPStatus
 
 
-class SimpleHTTPRequestHandler(http.server.Base.HTTPRequestHandler):
+class SimpleHTTPRequestHandler(http.server.BaseHTTPRequestHandler):
     def do_GET(self):
         if self.path == '/':
             self.send_response(HTTPStatus.OK)
@@ -32,7 +32,8 @@ class SimpleHTTPRequestHandler(http.server.Base.HTTPRequestHandler):
             self.wfile.write(b"404 Not Found: Endpoint not found")
 
 
-def run(server_class=http.server.HTTPServer, handler_class=SimpleHTTPRequestHandler):
+def run(server_class=http.server.HTTPServer,
+        handler_class=SimpleHTTPRequestHandler):
     server_address = ('', 8000)
     httpd = server_class(server_address, handler_class)
     print("Starting httpd server on port 8000...")
