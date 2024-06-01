@@ -36,10 +36,18 @@ def get_user(username):
     """
     gets and jsonifies users
     """
-    if username in users:
-        return jsonify(users[username])
+    user_data = users.get(username)
+    if user_data:
+         response_data = {
+            "username": user_data["username"],
+            "name": user_data["name"],
+            "age": user_data["age"],
+            "city": user_data["city"]
+        }
+         response = json.dumps(response_data, indent=4)
+         return Response(response, mimetype='application/json')
     else:
-        return "User not found", 400
+        return jsonify({"error": "User not found"}), 404
 
 @app.route('/add_user', methods=['POST'])
 def add_user():
@@ -50,14 +58,35 @@ def add_user():
     it gives the response on a user without a username AND
     it deals a duplicate username so i honestly have 0 to no idea
     """
-    data = request.get_json()
-    if 'username' in data:
-        username = data['username']
-        users[username] = data
-        return jsonify({"message": "User added", "user": data})
-    else:
-        return "Missing username in request", 400
+    user_data = request.get_json()
+    if not user_data or 'username' not in user_data or not user_data['username']:
+        return jsonify({"message": "Missing username"}), 400
+    required_fields = ['name', 'age', 'city']
+    if any(field not in user_data or not user_data[field] for field in required_fields):
+        return jsonify({"error": "Missing required fields"}), 400
 
+    username = user_data['username']
+    if username in users:
+        return jsonify({"error": "User already exists"}), 400
+
+    users[username] = {
+            'username': username,
+            'name': user_data['name'],
+            'age': user_data['age'],
+            'city': user_data['city']
+    }
+
+    response_data = {
+        'message': 'User added',
+        'user': {
+            'username': users[username]['username'],
+            'name': users[username]['name'],
+            'age': users[username]['age'],
+            'city': users[username]['city']
+        }
+    }
+
+    return jsonify(response_data)
 
 if __name__ == "__main__":
     app.run(debug=True)
