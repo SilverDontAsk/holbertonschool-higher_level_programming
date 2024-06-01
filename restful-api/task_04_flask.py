@@ -7,7 +7,10 @@ from flask import Flask, jsonify, request
 
 app = Flask(__name__)
 
-users = {"jane": {"name": "Jane", "age": 28, "city": "Los Angeles"}, "john": {"username": "john", "name": "John", "age": 30, "city": "New York"}}
+users = {
+        "jane": {"username": "jane", "name": "Jane", "age": 28, "city": "Los Angeles"}, 
+        "john": {"username": "john", "name": "John", "age": 30, "city": "New York"}
+}
 
 @app.route('/')
 def home():
@@ -36,7 +39,7 @@ def get_user(username):
     gets and jsonifies users
     """
     user_data = users.get(username)
-    if user:
+    if user_data:
         return jsonify(user_data)
     else:
         return jsonify({"error": "User Not Found"}), 404
