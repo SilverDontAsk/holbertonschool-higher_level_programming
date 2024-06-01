@@ -86,7 +86,18 @@ def add_user():
         }
     }
 
-    response_json = json.dumps(response_data, indent=4, sort_keys=True) + "\n"
+    response_json = (
+        '{\n'
+        '        "message": "User added",\n'
+        '        "user": {\n'
+        f'                "username": "{users[username]["username"]}",\n'
+        f'                "name": "{users[username]["name"]}",\n'
+        f'                "age": {users[username]["age"]},\n'
+        f'                "city": "{users[username]["city"]}"\n'
+        '        }\n'
+        '}\n'
+    )
+
     return Response(response_json, mimetype='application/json')
 
 if __name__ == "__main__":
