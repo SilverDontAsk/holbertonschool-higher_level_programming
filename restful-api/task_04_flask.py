@@ -36,18 +36,10 @@ def get_user(username):
     """
     gets and jsonifies users
     """
-    user_data = users.get(username)
-    if user_data:
-         response_data = {
-            "username": user_data["username"],
-            "name": user_data["name"],
-            "age": user_data["age"],
-            "city": user_data["city"]
-        }
-         response = json.dumps(response_data, indent=4)
-         return Response(response, mimetype='application/json')
+    if username in users:
+        return jsonify(users[username])
     else:
-        return jsonify({"error": "User not found"}), 404
+        return "User not found", 400
 
 @app.route('/add_user', methods=['POST'])
 def add_user():
