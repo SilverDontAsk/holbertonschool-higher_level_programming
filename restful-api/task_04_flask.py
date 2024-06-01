@@ -24,6 +24,8 @@ def get_data():
     """
     returns a jsonified list of users
     """
+    if not users:
+        return jsonify([])
     return jsonify(list(users.keys()))
 
 @app.route('/status', methods=['GET'])
