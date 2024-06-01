@@ -58,47 +58,14 @@ def add_user():
     it gives the response on a user without a username AND
     it deals a duplicate username so i honestly have 0 to no idea
     """
-    user_data = request.get_json()
-    if not user_data or 'username' not in user_data or not user_data['username']:
-        return jsonify({"message": "Missing username"}), 400
-    required_fields = ['name', 'age', 'city']
-    if any(field not in user_data or not user_data[field] for field in required_fields):
-        return jsonify({"error": "Missing required fields"}), 400
+    data = request.get_json()
+    if 'username' in data:
+        username = data['username']
+        users[username] = data
+        return jsonify({"message": "User added", "user": data})
+    else:
+        return "Missing username in request", 400
 
-    username = user_data['username']
-    if username in users:
-        return jsonify({"error": "User already exists"}), 400
-
-    users[username] = {
-            'username': username,
-            'name': user_data['name'],
-            'age': user_data['age'],
-            'city': user_data['city']
-    }
-
-    response_data = {
-        'message': 'User added',
-        'user': {
-            'username': users[username]['username'],
-            'name': users[username]['name'],
-            'age': users[username]['age'],
-            'city': users[username]['city']
-        }
-    }
-
-    response_json = (
-        '{\n'
-        '        "message": "User added",\n'
-        '        "user": {\n'
-        f'                "username": "{users[username]["username"]}",\n'
-        f'                "name": "{users[username]["name"]}",\n'
-        f'                "age": {users[username]["age"]},\n'
-        f'                "city": "{users[username]["city"]}"\n'
-        '        }\n'
-        '}\n'
-    )
-
-    return Response(response_json, mimetype='application/json')
 
 if __name__ == "__main__":
     app.run(debug=True)
