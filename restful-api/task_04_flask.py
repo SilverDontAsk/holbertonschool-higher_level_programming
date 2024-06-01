@@ -37,7 +37,7 @@ def get_user(username):
     """
     user_data = users.get(username)
     if user:
-        return jsonify(users)
+        return jsonify(user_data)
     else:
         return jsonify({"error": "User Not Found"}), 404
 
@@ -54,9 +54,9 @@ def add_user():
         return jsonify({"error": "User already exists"}), 400
     users[username] = {
             "username": username,
-            "name": user_data["name"],
-            "age": user_data["age"],
-            "city": user_data["city"]
+            "name": n_user["name"],
+            "age": n_user["age"],
+            "city": n_user["city"]
     }
     return jsonify({"message": "User added", "user": users[username]}), 200
 
