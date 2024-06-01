@@ -86,7 +86,8 @@ def add_user():
         }
     }
 
-    return jsonify(response_data)
+    response_json = json.dumps(response_data, indent=4, sort_keys=True) + "\n"
+    return Response(response_json, mimetype='application/json')
 
 if __name__ == "__main__":
     app.run(debug=True)
