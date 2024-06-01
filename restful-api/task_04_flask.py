@@ -44,7 +44,7 @@ def get_user(username):
             "age": user_data["age"],
             "city": user_data["city"]
         }
-         response = json.dumps(response_data)
+         response = json.dumps(response_data, indent=4)
          return Response(response, mimetype='application/json')
     else:
         return jsonify({"error": "User not found"}), 404
@@ -59,7 +59,7 @@ def add_user():
         return jsonify({"message": "Missing username"}), 400
     required_fields = ['name', 'age', 'city']
     if any(field not in user_data or not user_data[field] for field in required_fields):
-        return jsonify({"error": "Missing requires fields"}), 400
+        return jsonify({"error": "Missing required fields"}), 400
 
     username = user_data['username']
     if username in users:
@@ -79,7 +79,7 @@ def add_user():
         'city': users[username]['city']
     }
 
-    response = json.dumps({"message": "User added", "user": response_data})
+    response = json.dumps({"message": "User added", "user": response_data}, indent=4)
     return Response(response, mimetype='application/json')
 
 if __name__ == "__main__":
