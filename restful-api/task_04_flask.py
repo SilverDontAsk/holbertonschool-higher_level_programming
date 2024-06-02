@@ -2,7 +2,7 @@
 """
 Simple API in python with flask
 """
-from flask import Flask, jsonify, request, Response
+from flask import Flask, jsonify, request, Response, abort
 import json
 
 
@@ -36,18 +36,13 @@ def get_user(username):
     """
     gets and jsonifies users
     """
-    user_data = users.get(username)
-    if user_data:
-         response_data = {
-            "username": user_data["username"],
-            "name": user_data["name"],
-            "age": user_data["age"],
-            "city": user_data["city"]
-        }
-         response = json.dumps(response_data, indent=4)
-         return Response(response, mimetype='application/json')
-    else:
+    if username not in users:
         return jsonify({"error": "User not found"}), 404
+
+    data = users[username]
+    data['username'] = username
+
+    return jsonify(data)
 
 @app.route('/add_user', methods=['POST'])
 def add_user():
@@ -58,35 +53,28 @@ def add_user():
     it gives the response on a user without a username AND
     it deals a duplicate username so i honestly have 0 to no idea
     """
+    if request.get_json() is None:
+        abort(400, "Not a JSON")
+
     user_data = request.get_json()
-    if not user_data or 'username' not in user_data or not user_data['username']:
-        return jsonify({"message": "Missing username"}), 400
-    required_fields = ['name', 'age', 'city']
-    if any(field not in user_data or not user_data[field] for field in required_fields):
-        return jsonify({"error": "Missing required fields"}), 400
 
-    username = user_data['username']
-    if username in users:
-        return jsonify({"error": "User already exists"}), 400
+    if "username" not in user_data:
+        return jsonify({"error": "Needs a username"}), 400
 
-    users[username] = {
-            'username': username,
+    users[user_data['username']] = {
             'name': user_data['name'],
             'age': user_data['age'],
             'city': user_data['city']
     }
 
     response_data = {
-        'message': 'User added',
-        'user': {
-            'username': users[username]['username'],
-            'name': users[username]['name'],
-            'age': users[username]['age'],
-            'city': users[username]['city']
-        }
+            'username': user_data['username'],
+            'name': user_data['name'],
+            'age': user_data['age'],
+            'city': user_data['city']
     }
 
-    return jsonify(response_data)
+    return jsonify({"message": "User added", "user": response_data}), 201
 
 if __name__ == "__main__":
     app.run(debug=True)
