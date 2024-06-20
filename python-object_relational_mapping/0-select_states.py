@@ -1,4 +1,5 @@
 import MySQLdb
+import sys
 
 def list_all_states(username, password, database):
     db = MySQLdb.connect(host="localhost", port=3306, user=username, passwd=password, db=database)
@@ -6,12 +7,11 @@ def list_all_states(username, password, database):
     cursor.execute("SELECT * FROM states ORDER BY id ASC")
     rows = cursor.fetchall()
     for row in rows:
-        print("{row[0]}: {row[1]}")
+        print(row)
     cursor.close()
     db.close()
 
 if __name__ == "__main__":
-    import sys
     if len(sys.argv) != 4:
         print("Usage: python script.py <username> <password> <database>")
         sys.exit(1)
