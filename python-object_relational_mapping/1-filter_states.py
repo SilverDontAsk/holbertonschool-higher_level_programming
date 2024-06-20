@@ -14,7 +14,7 @@ import MySQLdb
 import sys
 
 
-def Filter_all_states(username, password, database):
+def filter_all_states(username, password, database):
     """
     This function will set up a connection with the database
     and fulfill the function of filtering for the desired
@@ -41,4 +41,4 @@ if __name__ == "__main__":
     password = sys.argv[2]
     database = sys.argv[3]
 
-    Filter_all_states(username, password, database)
+    filter_all_states(username, password, database)
