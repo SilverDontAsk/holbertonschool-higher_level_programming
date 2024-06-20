@@ -31,8 +31,10 @@ def filter_all_states(username, password, database):
         "SELECT id, name FROM states WHERE name LIKE 'N%' ORDER BY id ASC"
     )
     rows = cursor.fetchall()
+
     for row in rows:
         print(row)
+
     cursor.close()
     db.close()
 
