@@ -20,19 +20,20 @@ def filter_all_states(username, password, database):
     and fulfill the function of filtering for the desired
     result
     """
+
     db = MySQLdb.connect(host="localhost",
                          port=3306,
                          user=username,
                          passwd=password,
                          db=database)
-    select = db.cursor()
-    select.execute(
+    cursor = db.cursor()
+    cursor.execute(
         "SELECT id, name FROM states WHERE name LIKE 'N%' ORDER BY id ASC"
     )
-    rows = select.fetchall()
+    rows = cursor.fetchall()
     for row in rows:
         print(row)
-    select.close()
+    cursor.close()
     db.close()
 
 
