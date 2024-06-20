@@ -31,6 +31,7 @@ def list_all_states(username, password, name):
     select.close()
     db.close()
 
+
 if __name__ == "__main__":
     username = sys.argv[1]
     password = sys.argv[2]
