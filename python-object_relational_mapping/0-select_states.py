@@ -1,26 +1,39 @@
 #!/usr/bin/python3
-import sys
+"""
+This is a script that lists all the states that are
+in the database hbtn_0e_usa
+
+It takes 3 arguments, username, password and database
+
+All result is in ascending order
+"""
 import MySQLdb
-from sqlalchemy import create_engine
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy import Column, Integer, String
+import sys
 
-Base = declarative_base()
 
-class State(Base):
-    __tablename__ = 'states'
-    id = Column(Integer, primary_key=True)
-    name = Column(String(256), nullable=False)
+def list_all_states(username, password, name):
+    """
+    This will connect to the MySql server and list all
+    states in ascending order sorted by states.id
+    """
+    db = MySQLdb.connect(host="localhost",
+                         port=3306,
+                         user=username,
+                         passwd=password,
+                         db=database)
+    select = db.cursor()
+    select.execute("Select id, name FROM states ORDER BY id ASC")
+    rows = select.fetchall()
+
+    for row in rows:
+        print(row)
+
+    select.close()
+    db.close()
 
 if __name__ == "__main__":
     username = sys.argv[1]
     password = sys.argv[2]
     database = sys.argv[3]
-    engine = create_engine(f'mysql+mysqldb://{username}:{password}@localhost:3306/{database}')
-    Session = sessionmaker(bind=engine)
-    session = Session()
-    states = session.query(State).order_by(State.id).all()
-    for state in states:
-        print(f"({state.id}, '{state.name}')")
-    session.close()
+
+    list_all_states(username, password, database)
