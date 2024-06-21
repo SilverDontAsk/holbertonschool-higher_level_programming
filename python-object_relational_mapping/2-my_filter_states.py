@@ -19,7 +19,9 @@ def filter_by_input(username, password, database, state):
                          passwd=password,
                          db=database)
     select = db.cursor()
-    qy = "SELECT * FROM states WHERE name = '{}' ORDER BY id ASC".format(state)
+    qy = """
+        SELECT * FROM states WHERE BINARY name = '{}' ORDER BY id ASC
+        """.format(state)
     select.execute(qy)
     rows = select.fetchall()
 
