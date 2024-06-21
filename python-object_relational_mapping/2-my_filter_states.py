@@ -19,8 +19,8 @@ def filter_by_input(username, password, database, state):
                          passwd=password,
                          db=database)
     select = db.cursor()
-    query = "SELECT id, name FROM states WHERE name = %s ORDER BY id ASC"
-    select.execute(query, (state, ))
+    query = "SELECT id, name FROM states WHERE name = '{}' ORDER BY id ASC".format(state)
+    select.execute(query)
     rows = select.fetchall()
 
     for row in rows:
