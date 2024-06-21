@@ -3,6 +3,8 @@
 This script will take an argument and display all
 values in the states table of hbtn_0e_0_usa
 where name matches the argument
+
+This time, safe from sql injections
 """
 import MySQLdb
 import sys
