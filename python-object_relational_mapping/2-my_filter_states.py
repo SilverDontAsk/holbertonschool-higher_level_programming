@@ -19,8 +19,8 @@ def filter_by_input(username, password, database, state):
                          passwd=password,
                          db=database)
     select = db.cursor()
-    query = "SELECT id, name FROM states WHERE name = '{}' ORDER BY id ASC".format(state)
-    select.execute(query)
+    qy = "SELECT * FROM states WHERE name = '{}' ORDER BY id ASC".format(state)
+    select.execute(qy)
     rows = select.fetchall()
 
     for row in rows:
@@ -31,9 +31,6 @@ def filter_by_input(username, password, database, state):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 5:
-        print("Usage: {} <username> <password> <database> <state>".format(sys.argv[0]))
-        sys.exit(1)
 
     username = sys.argv[1]
     password = sys.argv[2]
