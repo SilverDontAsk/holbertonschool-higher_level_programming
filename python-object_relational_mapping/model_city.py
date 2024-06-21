@@ -6,9 +6,7 @@ Uses SQLAlchemy
 """
 from sqlalchemy import create_engine, Column, Integer, String, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
-
-Base = declarative_base()
+from model_state import Base
 
 
 class City(Base):
@@ -23,4 +21,4 @@ class City(Base):
             autoincrement=True,
             nullable=False)
     name = Column(String(128), nullable=False)
-    state_id = Column(Integer, nullable=False, ForeignKey('states.id'))
+    state_id = Column(Integer, ForeignKey('states.id'), nullable=False)
