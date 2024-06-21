@@ -23,8 +23,7 @@ def list_all_cities(username, password, name):
                          db=database)
     select = db.cursor()
     select.execute("""
-    Select c.id as city_id, c.name as city_name, s.id as state_id,
-    s.name as state_name
+    Select c.id, c.name, s.name
     FROM cities c
     INNER JOIN states s ON c.state_id = s.id
     ORDER BY c.id ASC
