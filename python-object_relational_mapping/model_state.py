@@ -10,6 +10,7 @@ from sqlalchemy.orm import sessionmaker
 
 Base = declarative_base()
 
+
 class State(Base):
     """
     This will be the state class that links to the table
