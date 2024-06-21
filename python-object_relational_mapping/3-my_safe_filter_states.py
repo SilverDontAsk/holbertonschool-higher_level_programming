@@ -31,9 +31,6 @@ def filter_by_input(username, password, database, state):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 5:
-        print("Usage: {} <username> <password> <database> <state>".format(sys.argv[0]))
-        sys.exit(1)
 
     username = sys.argv[1]
     password = sys.argv[2]
