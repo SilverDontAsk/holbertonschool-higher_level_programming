@@ -27,7 +27,7 @@ if __name__ == "__main__":
             State.name == state_arg).first()
 
     if state is None:
-        print("Nothing")
+        print("Not found")
     else:
         print(f"{state.id}")
 
