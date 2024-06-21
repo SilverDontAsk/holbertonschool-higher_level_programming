@@ -26,8 +26,11 @@ def list_cities_by_input(username, password, database, state):
     """
     select.execute(qr, (state, ))
 
-    cities_string = select.fetchone()[0]
-    print(cities_string)
+    cities_string = select.fetchone()
+    if cities_string[0]:
+        print(cities_string[0])
+    else:
+        print()
 
     select.close()
     db.close()
