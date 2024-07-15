@@ -41,6 +41,7 @@ def read_sqlite_db():
     except Exception as e:
         return []
 
+
 @app.route('/products')
 def products():
     source = request.args.get('source')
@@ -50,6 +51,8 @@ def products():
         products = read_json_file()
     elif source == 'csv':
         products = read_csv_file()
+    elif source == 'sql':
+        products = read_sqlite_db()
     else:
         return render_template('product_display.html', error="Wrong source")
 
