@@ -16,6 +16,7 @@ def create_database():
         VALUES
         (1, 'Laptop', 'Electronics', 799.99),
         (2, 'Coffee Mug', 'Home Goods', 15.99)
+        (3, 'Jarvis', 'AI Assistant', 2999.99)
     ''')
     conn.commit()
     conn.close()
