@@ -29,13 +29,9 @@ def read_csv_file():
 def read_sqlite_db():
     try:
         conn = sqlite3.connect('products.db')
-        cursor = conn.cursor
+        cursor = conn.cursor()
         cursor.execute('SELECT id, name, category, price FROM Products')
-        products = [{'id': row[0],
-                     'name': row[1],
-                     'category': row[2],
-                     'price': row[3]}
-                    for row in cursor.fetchall()]
+        products = [{'id': row[0], 'name': row[1], 'category': row[2], 'price': row[3]} for row in cursor.fetchall()]
         conn.close()
         return products
     except Exception as e:
